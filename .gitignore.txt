@@ -1,0 +1,8 @@
+# This file is used to ignore files which are generated
+# ----------------------------------------------------------------------------
+bin/
+build/
+Makefile
+.qmake.stash
+*.pro.user
+*.o

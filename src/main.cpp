@@ -12,7 +12,7 @@ int main(int argc, const char * argv[])
             getline(std::cin, str);
             std::cout << "Результат:​ " << calculator.calculation(str) << std::endl;
         }
-        catch (const std::exception &exception)
+        catch (const std::invalid_argument &exception)
         {
             std::cout << "некорректный​​ ввод,​​ строка​​ содержит​​ недопустимое​​ выражение​​ "
                       << exception.what() << std::endl;

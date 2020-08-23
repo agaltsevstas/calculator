@@ -11,7 +11,6 @@ class Calculator
 {
 public:
     Calculator() {}
-    float isNumber(const std::string &number);
     float calculation(std::string &buffer);
     
 protected:
@@ -19,6 +18,7 @@ protected:
     float subtraction(const std::pair<float, float> &numbers);
     float multiplication(const std::pair<float, float> &numbers);
     float division(const std::pair<float, float> &numbers);
+    float toNumber(const std::string &number);
     float operations(const std::pair<std::string, std::string> &numbers, const char operation);
     float readBuffer(std::string &buffer);
     

@@ -4,24 +4,28 @@ float Calculator::calculation(std::string &buffer)
 {
     result_ = readBuffer(buffer);
     result_ == 0 ? result_ = 0 : result_;
-    return  round(result_ * 100) / 100;
+    return round(result_ * 100) / 100;
 }
 
+// Сложение
 float Calculator::addition(const std::pair<float, float> &numbers)
 {
     return numbers.first + numbers.second;
 }
 
+// Вычитание
 float Calculator::subtraction(const std::pair<float, float> &numbers)
 {
     return numbers.first - numbers.second;
 }
 
+// Умножение
 float Calculator::multiplication(const std::pair<float, float> &numbers)
 {
     return numbers.first * numbers.second;
 }
 
+// Деление
 float Calculator::division(const std::pair<float, float> &numbers)
 {
     const float divisor = numbers.second;
@@ -30,15 +34,17 @@ float Calculator::division(const std::pair<float, float> &numbers)
     return numbers.first / numbers.second;
 }
 
-float Calculator::isNumber(const std::string &number)
+// Конвертация в число
+float Calculator::toNumber(const std::string &number)
 {
     return round(std::stof(number) * 100) / 100;
 }
 
+// Выбор действия
 float Calculator::operations(const std::pair<std::string, std::string> &numbersString, const char operation)
 {
-    float fisrtNumber = isNumber(numbersString.first);
-    float secondNumber = isNumber(numbersString.second);
+    float fisrtNumber = toNumber(numbersString.first);
+    float secondNumber = toNumber(numbersString.second);
     switch (operation)
     {
         case '+':
@@ -54,11 +60,12 @@ float Calculator::operations(const std::pair<std::string, std::string> &numbersS
             return division({fisrtNumber, secondNumber});
             
         default:
-            throw operation;
+            throw std::invalid_argument((char*)&operation);
     }
     return 0;
 }
 
+// Рекурсивный счет строки
 float Calculator::readBuffer(std::string &buffer)
 {
     std::string first, second;
@@ -96,7 +103,7 @@ float Calculator::readBuffer(std::string &buffer)
             {
                 if (input.empty())
                 {
-                    throw std::invalid_argument(std::to_string(c));
+                    throw std::invalid_argument((char*)&c);
                 }
                 second = input;
                 result = operations({first, second}, operation);
@@ -127,7 +134,7 @@ float Calculator::readBuffer(std::string &buffer)
         }
         else if (c != '\0')
         {
-            throw std::invalid_argument(std::to_string(c));
+            throw std::invalid_argument((char*)&c);
         }
         if (i == size)
         {
@@ -136,7 +143,7 @@ float Calculator::readBuffer(std::string &buffer)
             {
                 if (operation != '\0')
                 {
-                    throw std::invalid_argument(std::to_string(operation));
+                    throw std::invalid_argument((char*)&c);
                 }
                 result = std::stof(input);
             }
